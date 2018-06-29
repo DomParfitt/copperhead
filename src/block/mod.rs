@@ -1,12 +1,9 @@
+use color::RED;
 use piston_window::rectangle;
 use piston_window::Context;
 use piston_window::G2d;
 
 const SIZE: f64 = 10.0;
-
-pub const RED: [f32; 4] = [1.0, 0.0, 0.0, 1.0];
-pub const GREEN: [f32; 4] = [0.0, 1.0, 0.0, 1.0];
-pub const BLUE: [f32; 4] = [0.0, 0.0, 1.0, 1.0];
 
 pub struct Block {
     pub x: f64,

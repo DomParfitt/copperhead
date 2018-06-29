@@ -1,4 +1,4 @@
-use block::GREEN;
+use color::GREEN;
 use piston_window::G2d;
 use piston_window::Context;
 use rand::thread_rng;

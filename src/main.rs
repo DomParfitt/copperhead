@@ -5,6 +5,7 @@ extern crate rand;
 use piston_window::*;
 
 mod block;
+mod color;
 mod controller;
 mod food;
 mod snake;
@@ -12,6 +13,7 @@ mod traits;
 
 use food::Food;
 use snake::Snake;
+use color::*;
 
 const WINDOW_SIZE: [u32; 2] = [500, 400];
 const COUNT_DOWN: u32 = 60;
@@ -25,7 +27,7 @@ fn main() {
     let mut counter = COUNT_DOWN;
     while let Some(event) = window.next() {
         window.draw_2d(&event, |context, graphics| {
-            clear([1.0; 4], graphics);
+            clear(WHITE, graphics);
             snake.render(context, graphics);
             food.render(context, graphics);
         });
