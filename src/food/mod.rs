@@ -11,16 +11,29 @@ pub struct Food {
 
 impl Food {
     pub fn new() -> Self {
-        let mut rng = thread_rng();
-        let x = rng.gen_range(0.0, 500.0);
-        let y = rng.gen_range(0.0, 400.0);
-        Food {
+        let mut food = Food {
             is_consumed: false,
-            block: Block::from((x, y))
-        }
+            block: Block::new()
+        };
+
+        let mut x = Food::get_random_coord(food.block.size);
+        let mut y = Food::get_random_coord(food.block.size);
+        println!("Placing food at ({}, {})", x, y);
+        food.block = Block::from((x, y));
+        food
     }
 
     pub fn render(&self, context: Context, graphics: &mut G2d) {
         self.block.render(context, graphics);
+    }
+
+    fn get_random_coord(block_size: f64) -> f64 {
+        let mut rng = thread_rng();
+        let mut coord = rng.gen_range(0, 500) as f64;
+        while coord % block_size != 0.0 {
+            coord = rng.gen_range(0, 500) as f64;
+        }
+
+        coord
     }
 }
