@@ -15,8 +15,8 @@ impl Food {
             block: Block::new()
         };
 
-        let x = Food::get_random_coord(food.block.size);
-        let y = Food::get_random_coord(food.block.size);
+        let x = Food::get_random_coord(food.block.size, 500);
+        let y = Food::get_random_coord(food.block.size, 400);
         // println!("Placing food at ({}, {})", x, y);
         food.block = Block::from((x, y));
         food.block.color = GREEN;
@@ -27,11 +27,11 @@ impl Food {
         self.block.render(context, graphics);
     }
 
-    fn get_random_coord(block_size: f64) -> f64 {
+    fn get_random_coord(block_size: f64, max: u32) -> f64 {
         let mut rng = thread_rng();
-        let mut coord = rng.gen_range(0, 500) as f64;
+        let mut coord = rng.gen_range(0, max) as f64;
         while coord % block_size != 0.0 {
-            coord = rng.gen_range(0, 500) as f64;
+            coord = rng.gen_range(0, max) as f64;
         }
 
         coord
