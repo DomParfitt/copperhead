@@ -1,3 +1,4 @@
+use block::GREEN;
 use piston_window::G2d;
 use piston_window::Context;
 use rand::thread_rng;
@@ -5,21 +6,20 @@ use block::Block;
 use rand::Rng;
 
 pub struct Food {
-    pub is_consumed: bool,
     pub block: Block
 }
 
 impl Food {
     pub fn new() -> Self {
         let mut food = Food {
-            is_consumed: false,
             block: Block::new()
         };
 
-        let mut x = Food::get_random_coord(food.block.size);
-        let mut y = Food::get_random_coord(food.block.size);
-        println!("Placing food at ({}, {})", x, y);
+        let x = Food::get_random_coord(food.block.size);
+        let y = Food::get_random_coord(food.block.size);
+        // println!("Placing food at ({}, {})", x, y);
         food.block = Block::from((x, y));
+        food.block.color = GREEN;
         food
     }
 

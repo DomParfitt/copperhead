@@ -4,11 +4,16 @@ use piston_window::G2d;
 
 const SIZE: f64 = 10.0;
 
+pub const RED: [f32; 4] = [1.0, 0.0, 0.0, 1.0];
+pub const GREEN: [f32; 4] = [0.0, 1.0, 0.0, 1.0];
+pub const BLUE: [f32; 4] = [0.0, 0.0, 1.0, 1.0];
+
 pub struct Block {
     pub x: f64,
     pub y: f64,
     pub size: f64,
     pub direction: Direction,
+    pub color: [f32; 4]
 }
 
 impl Block {
@@ -18,7 +23,7 @@ impl Block {
 
     pub fn render(&self, context: Context, graphics: &mut G2d) {
         rectangle(
-            [1.0, 0.0, 0.0, 1.0], // red
+            self.color, // red
             [self.x, self.y, self.size, self.size],
             context.transform,
             graphics,
@@ -62,6 +67,7 @@ impl From<(f64, f64)> for Block {
             y: coords.1,
             size: SIZE,
             direction: Direction::NONE,
+            color: RED,
         }
     }
 }
@@ -94,3 +100,5 @@ impl Direction {
         }
     }
 }
+
+
