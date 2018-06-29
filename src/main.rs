@@ -40,13 +40,21 @@ fn main() {
             counter = COUNT_DOWN;
         }
 
-        if check_collision(&mut snake, &food) {
+        if check_collision_with_food(&mut snake, &food) {
             food = Food::new();
         }
     }
 }
 
-fn check_collision(snake: &mut Snake, food: &Food) -> bool {
+fn check_collision_with_wall(snake: &Snake) -> bool {
+    false
+}
+
+fn check_collision_with_self(snake: &Snake) -> bool {
+    false
+}
+
+fn check_collision_with_food(snake: &mut Snake, food: &Food) -> bool {
     if snake.head.collides_with(&food.block) {
         snake.add_block();
         return true;
