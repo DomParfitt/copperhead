@@ -48,6 +48,11 @@ impl Snake {
         }
     }
 
+    pub fn add_block(&mut self) {
+        let block = self.new_block();
+        self.body.push(block);
+    }
+
     fn key_binding(key: Key) -> Direction {
         match key {
             Key::Up => Direction::UP,
@@ -56,11 +61,6 @@ impl Snake {
             Key::Right => Direction::RIGHT,
             _ => Direction::NONE,
         }
-    }
-
-    fn add_block(&mut self) {
-        let block = self.new_block();
-        self.body.push(block);
     }
 
     fn new_block(&self) -> Block {
