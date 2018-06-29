@@ -1,6 +1,6 @@
 use piston_window::rectangle;
-use piston_window::G2d;
 use piston_window::Context;
+use piston_window::G2d;
 
 const SIZE: f64 = 10.0;
 
@@ -27,20 +27,31 @@ impl Block {
 
     pub fn update(&mut self) {
         match self.direction {
-                Direction::UP => {
-                    self.y -= self.size;
-                }
-                Direction::DOWN => {
-                    self.y += self.size;
-                }
-                Direction::LEFT => {
-                    self.x -= self.size;
-                }
-                Direction::RIGHT => {
-                    self.x += self.size;
-                }
-                _ => {}
+            Direction::UP => {
+                self.y -= self.size;
             }
+            Direction::DOWN => {
+                self.y += self.size;
+            }
+            Direction::LEFT => {
+                self.x -= self.size;
+            }
+            Direction::RIGHT => {
+                self.x += self.size;
+            }
+            _ => {}
+        }
+    }
+
+    pub fn collides_with(&self, other: &Block) -> bool {
+        self.x == other.x && self.y == other.y
+        // let right_collides_with_left = (self.x + self.size) >= other.x;
+        // let left_collides_with_right = self.x <= (other.x + other.size);
+        // let top_collides_with_bottom = self.y <= (other.y + other.size);
+        // let bottom_collides_with_top = (self.y + self.size) >= other.y;
+
+        // !(right_collides_with_left || left_collides_with_right || top_collides_with_bottom
+        //     || bottom_collides_with_top)
     }
 }
 
